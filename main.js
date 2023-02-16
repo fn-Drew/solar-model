@@ -14,8 +14,9 @@ const sizes = {
 // Model loader
 const loader = new GLTFLoader()
 
-function load(glb, size) {
+function load(glb, size, x) {
     glb.scene.scale.set(size, size, size)
+    glb.scene.position.setX(x)
     scene.add(glb.scene)
 }
 
@@ -27,8 +28,8 @@ function onError(error) {
     console.error(error)
 }
 
-loader.load("./public/assets/earth/EarthClouds_1_12756.glb", onLoad => load(onLoad, .1), onProgress, onError)
-loader.load("./public/assets/sun/Sun_1_1391000.glb", onLoad => load(onLoad, 1), onProgress, onError)
+loader.load("./public/assets/earth/EarthClouds_1_12756.glb", onLoad => load(onLoad, .1, 300), onProgress, onError)
+loader.load("./public/assets/sun/Sun_1_1391000.glb", onLoad => load(onLoad, .2, 0, -100), onProgress, onError)
 
 // Light
 const light = new THREE.DirectionalLight(0xffffff, 6)
