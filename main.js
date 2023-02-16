@@ -28,8 +28,15 @@ function onError(error) {
     console.error(error)
 }
 
-loader.load("./public/assets/earth/EarthClouds_1_12756.glb", onLoad => load(onLoad, .1, 300), onProgress, onError)
-loader.load("./public/assets/sun/Sun_1_1391000.glb", onLoad => load(onLoad, .2, 0, -100), onProgress, onError)
+loader.load("./public/assets/sun/Sun_1_1391000.glb", onLoad => load(onLoad, .2, 0, 0), onProgress, onError)
+loader.load("./public/assets/mercury/Mercury_1_4878.glb", onLoad => load(onLoad, .1, 200), onProgress, onError)
+loader.load("./public/assets/venus/Venus_1_12103.glb", onLoad => load(onLoad, .1, 300), onProgress, onError)
+loader.load("./public/assets/earth/EarthClouds_1_12756.glb", onLoad => load(onLoad, .1, 400), onProgress, onError)
+loader.load("./public/assets/mars/Mars_1_6792.glb", onLoad => load(onLoad, .1, 500), onProgress, onError)
+loader.load("./public/assets/jupiter/Jupiter_1_142984.glb", onLoad => load(onLoad, .1, 600), onProgress, onError)
+loader.load("./public/assets/saturn/Saturn_1_120536.glb", onLoad => load(onLoad, .1, 700), onProgress, onError)
+loader.load("./public/assets/uranus/Uranus_1_51118.glb", onLoad => load(onLoad, .1, 800), onProgress, onError)
+loader.load("./public/assets/neptune/Neptune_1_49528.glb", onLoad => load(onLoad, .1, 900), onProgress, onError)
 
 // Light
 const light = new THREE.DirectionalLight(0xffffff, 6)
@@ -69,7 +76,6 @@ window.addEventListener('resize', () => {
 
 function loop() {
     // renderer.render(scene, camera)
-
     // weighted camera effect
     controls.update()
     window.requestAnimationFrame(loop)
