@@ -11,7 +11,6 @@ const sizes = {
     height: window.innerHeight,
 }
 
-
 // Model loader
 const loader = new GLTFLoader()
 
@@ -61,6 +60,17 @@ renderer.render(scene, camera)
 const controls = new OrbitControls(camera, canvas)
 // weighted camera
 controls.enableDamping = true
+
+// update window when resized
+window.addEventListener('resize', () => {
+    // Update
+    sizes.width = window.innerWidth
+    sizes.height = window.innerHeight
+    // Update Camera
+    camera.aspect = sizes.width / sizes.height
+    camera.updateProjectionMatrix()
+    renderer.setSize(sizes.width, sizes.height)
+})
 
 function loop() {
     // renderer.render(scene, camera)
