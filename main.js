@@ -33,12 +33,19 @@ function load(glb, planet, size, x) {
     scene.add(obj)
 }
 
-function rotatePlanet() {
-    if (planetObjects[1]?.rotation === undefined) {
+function rotatePlanet(planetName, modelType, rotationSpeed) {
+
+    if (modelType[3]?.rotation === undefined) {
         console.log('UNDEF')
     } else {
-        planetObjects[1].rotation.y += .01
+        modelType[3].rotation.y += rotationSpeed
     }
+
+    // if (planetObjects[1]?.rotation === undefined) {
+    //     console.log('UNDEF')
+    // } else {
+    //     planetObjects[1].rotation.y += .01
+    // }
 }
 
 function onProgress(xhr) {
@@ -104,7 +111,8 @@ function loop() {
 loop()
 
 function animate() {
-    rotatePlanet('venus', planetObjects)
+    rotatePlanet('venus', planetMeshes, .01)
+    rotatePlanet('venus', planetObjects, .001)
     requestAnimationFrame(animate)
     renderer.render(scene, camera)
 }
