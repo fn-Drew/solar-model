@@ -15,6 +15,16 @@ const sizes = {
 const planetObjects = []
 const planetMeshes = []
 
+const cubeTextureLoader = new THREE.CubeTextureLoader()
+scene.background = cubeTextureLoader.load([
+    './public/assets/background/skybox/back.png',
+    './public/assets/background/skybox/bottom.png',
+    './public/assets/background/skybox/front.png',
+    './public/assets/background/skybox/left.png',
+    './public/assets/background/skybox/right.png',
+    './public/assets/background/skybox/top.png',
+])
+
 function load(glb, planet, size, x) {
     const mesh = glb.scene
     const obj = new THREE.Object3D()
@@ -27,6 +37,10 @@ function load(glb, planet, size, x) {
 
     mesh.scale.set(size, size, size)
     mesh.position.setX(x)
+    if (planet === 'saturn') {
+        mesh.rotation.x = Math.PI / 1.2;
+        mesh.rotation.y = Math.PI / 3.2;
+    }
 
     obj.add(mesh)
     scene.add(obj)
@@ -73,8 +87,9 @@ light.position.set(-1, 0, 0)
 scene.add(light)
 
 // Camera
-const camera = new THREE.PerspectiveCamera(30, sizes.width / sizes.height, 2, 50000)
-camera.position.z = 1000
+const camera = new THREE.PerspectiveCamera(40, sizes.width / sizes.height, 1, 500 * distance)
+camera.position.z = 5000
+camera.position.y = 3000
 scene.add(camera)
 
 // FPS counter
