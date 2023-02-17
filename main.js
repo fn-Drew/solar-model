@@ -4,6 +4,23 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import Stats from 'stats.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
+const sun = new URL('./assets/sun/sun.glb', import.meta.url).href
+const mercury = new URL('./assets/mercury/mercury.glb', import.meta.url).href
+const venus = new URL('./assets/venus/venus.glb', import.meta.url).href
+const earth = new URL('./assets/earth/earth.glb', import.meta.url).href
+const mars = new URL('./assets/mars/mars.glb', import.meta.url).href
+const jupiter = new URL('./assets/jupiter/jupiter.glb', import.meta.url).href
+const saturn = new URL('./assets/saturn/saturn.glb', import.meta.url).href
+const uranus = new URL('./assets/uranus/uranus.glb', import.meta.url).href
+const neptune = new URL('./assets/neptune/neptune.glb', import.meta.url).href
+
+const back = new URL('./assets/background/skybox/back.png', import.meta.url).href
+const bottom = new URL('./assets/background/skybox/bottom.png', import.meta.url).href
+const front = new URL('./assets/background/skybox/front.png', import.meta.url).href
+const left = new URL('./assets/background/skybox/left.png', import.meta.url).href
+const right = new URL('./assets/background/skybox/right.png', import.meta.url).href
+const top = new URL('./assets/background/skybox/top.png', import.meta.url).href
+
 // Scene
 const scene = new THREE.Scene()
 
@@ -17,12 +34,12 @@ const planetMeshes = []
 
 const cubeTextureLoader = new THREE.CubeTextureLoader()
 scene.background = cubeTextureLoader.load([
-    './public/assets/background/skybox/back.png',
-    './public/assets/background/skybox/bottom.png',
-    './public/assets/background/skybox/front.png',
-    './public/assets/background/skybox/left.png',
-    './public/assets/background/skybox/right.png',
-    './public/assets/background/skybox/top.png',
+    back,
+    bottom,
+    front,
+    left,
+    right,
+    top,
 ])
 
 function load(glb, planet, size, x) {
@@ -71,15 +88,15 @@ const earthSize = .08
 const speed = .002
 const distance = 200
 
-loader.load("./public/assets/sun/Sun_1_1391000.glb", onLoad => load(onLoad, 'sun', earthSize * 13, 0), onProgress, onError)
-loader.load("./public/assets/mercury/Mercury_1_4878.glb", onLoad => load(onLoad, 'mercury', earthSize * 1 / 3, 3.5 * distance), onProgress, onError)
-loader.load("./public/assets/venus/Venus_1_12103.glb", onLoad => load(onLoad, 'venus', earthSize * .9, 6.7 * distance), onProgress, onError)
-loader.load("./public/assets/earth/EarthClouds_1_12756.glb", onLoad => load(onLoad, 'earth', earthSize, 9.3 * distance), onProgress, onError)
-loader.load("./public/assets/mars/Mars_1_6792.glb", onLoad => load(onLoad, 'mars', earthSize * 1 / 2, 14.2 * distance), onProgress, onError)
-loader.load("./public/assets/jupiter/Jupiter_1_142984.glb", onLoad => load(onLoad, 'jupiter', earthSize * 11, 48.4 * distance), onProgress, onError)
-loader.load("./public/assets/saturn/Saturn_1_120536.glb", onLoad => load(onLoad, 'saturn', earthSize * 9, 88.9 * distance), onProgress, onError)
-loader.load("./public/assets/uranus/Uranus_1_51118.glb", onLoad => load(onLoad, 'uranus', earthSize * 4, 179 * distance), onProgress, onError)
-loader.load("./public/assets/neptune/Neptune_1_49528.glb", onLoad => load(onLoad, 'neptune', earthSize * 3.5, 288 * distance), onProgress, onError)
+loader.load(sun, onLoad => load(onLoad, 'sun', earthSize * 15, 0), onProgress, onError)
+loader.load(mercury, onLoad => load(onLoad, 'mercury', earthSize * 1 / 3, 3.5 * distance), onProgress, onError)
+loader.load(venus, onLoad => load(onLoad, 'venus', earthSize * .9, 6.7 * distance), onProgress, onError)
+loader.load(earth, onLoad => load(onLoad, 'earth', earthSize, 9.3 * distance), onProgress, onError)
+loader.load(mars, onLoad => load(onLoad, 'mars', earthSize * 1 / 2, 14.2 * distance), onProgress, onError)
+loader.load(jupiter, onLoad => load(onLoad, 'jupiter', earthSize * 11, 48.4 * distance), onProgress, onError)
+loader.load(saturn, onLoad => load(onLoad, 'saturn', earthSize * 9, 88.9 * distance), onProgress, onError)
+loader.load(uranus, onLoad => load(onLoad, 'uranus', earthSize * 4, 179 * distance), onProgress, onError)
+loader.load(neptune, onLoad => load(onLoad, 'neptune', earthSize * 3.5, 288 * distance), onProgress, onError)
 
 // Light
 const light = new THREE.PointLight(0xffffff, 1)
