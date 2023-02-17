@@ -34,18 +34,12 @@ function load(glb, planet, size, x) {
 }
 
 function rotatePlanet(planetName, modelType, rotationSpeed) {
+    const planet = modelType.find(model => model?.planet === planetName)  
 
-    if (modelType[3]?.rotation === undefined) {
-        console.log('UNDEF')
+    if (planet?.rotation === undefined) {
     } else {
-        modelType[3].rotation.y += rotationSpeed
+        planet.rotation.y += rotationSpeed
     }
-
-    // if (planetObjects[1]?.rotation === undefined) {
-    //     console.log('UNDEF')
-    // } else {
-    //     planetObjects[1].rotation.y += .01
-    // }
 }
 
 function onProgress(xhr) {
@@ -103,16 +97,25 @@ window.addEventListener('resize', () => {
 })
 
 function loop() {
-    // renderer.render(scene, camera)
-    // weighted camera effect
     controls.update()
     window.requestAnimationFrame(loop)
 }
 loop()
 
 function animate() {
+
     rotatePlanet('venus', planetMeshes, .01)
     rotatePlanet('venus', planetObjects, .001)
+
+    rotatePlanet('mercury', planetMeshes, .01)
+    rotatePlanet('mercury', planetObjects, .001)
+
+    rotatePlanet('earth', planetMeshes, .01)
+    rotatePlanet('earth', planetObjects, .001)
+
+    rotatePlanet('mars', planetMeshes, .01)
+    rotatePlanet('mars', planetObjects, .001)
+
     requestAnimationFrame(animate)
     renderer.render(scene, camera)
 }
