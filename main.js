@@ -53,15 +53,17 @@ function onError(error) {
 // Model loader
 const loader = new GLTFLoader()
 
-loader.load("./public/assets/sun/Sun_1_1391000.glb", onLoad => load(onLoad, 'sun', .2, 0, 0), onProgress, onError)
-loader.load("./public/assets/mercury/Mercury_1_4878.glb", onLoad => load(onLoad, 'mercury', .1, 200), onProgress, onError)
-loader.load("./public/assets/venus/Venus_1_12103.glb", onLoad => load(onLoad, 'venus', .1, 300), onProgress, onError)
-loader.load("./public/assets/earth/EarthClouds_1_12756.glb", onLoad => load(onLoad, 'earth', .1, 400), onProgress, onError)
-loader.load("./public/assets/mars/Mars_1_6792.glb", onLoad => load(onLoad, 'mars', .1, 500), onProgress, onError)
-loader.load("./public/assets/jupiter/Jupiter_1_142984.glb", onLoad => load(onLoad, 'jupiter', .1, 600), onProgress, onError)
-loader.load("./public/assets/saturn/Saturn_1_120536.glb", onLoad => load(onLoad, 'saturn', .1, 700), onProgress, onError)
-loader.load("./public/assets/uranus/Uranus_1_51118.glb", onLoad => load(onLoad, 'uranus', .1, 800), onProgress, onError)
-loader.load("./public/assets/neptune/Neptune_1_49528.glb", onLoad => load(onLoad, 'neptune', .1, 900), onProgress, onError)
+const earthSize = .01
+
+loader.load("./public/assets/sun/Sun_1_1391000.glb", onLoad => load(onLoad, 'sun', earthSize * 109, 0, 0), onProgress, onError)
+loader.load("./public/assets/mercury/Mercury_1_4878.glb", onLoad => load(onLoad, 'mercury', earthSize * 1/3, 200), onProgress, onError)
+loader.load("./public/assets/venus/Venus_1_12103.glb", onLoad => load(onLoad, 'venus', earthSize * .9, 400), onProgress, onError)
+loader.load("./public/assets/earth/EarthClouds_1_12756.glb", onLoad => load(onLoad, 'earth', earthSize, 600), onProgress, onError)
+loader.load("./public/assets/mars/Mars_1_6792.glb", onLoad => load(onLoad, 'mars', earthSize * 1/2, 800), onProgress, onError)
+loader.load("./public/assets/jupiter/Jupiter_1_142984.glb", onLoad => load(onLoad, 'jupiter', earthSize * 11, 1000), onProgress, onError)
+loader.load("./public/assets/saturn/Saturn_1_120536.glb", onLoad => load(onLoad, 'saturn', earthSize * 9, 1200), onProgress, onError)
+loader.load("./public/assets/uranus/Uranus_1_51118.glb", onLoad => load(onLoad, 'uranus', earthSize * 4, 1400), onProgress, onError)
+loader.load("./public/assets/neptune/Neptune_1_49528.glb", onLoad => load(onLoad, 'neptune', earthSize * 3.5, 1600), onProgress, onError)
 
 // Light
 const light = new THREE.PointLight(0xffffff, 1)
@@ -104,17 +106,29 @@ loop()
 
 function animate() {
 
-    rotatePlanet('venus', planetMeshes, .01)
-    rotatePlanet('venus', planetObjects, .001)
-
     rotatePlanet('mercury', planetMeshes, .01)
     rotatePlanet('mercury', planetObjects, .001)
+
+    rotatePlanet('venus', planetMeshes, .01)
+    rotatePlanet('venus', planetObjects, .001)
 
     rotatePlanet('earth', planetMeshes, .01)
     rotatePlanet('earth', planetObjects, .001)
 
     rotatePlanet('mars', planetMeshes, .01)
     rotatePlanet('mars', planetObjects, .001)
+
+    rotatePlanet('jupiter', planetMeshes, .01)
+    rotatePlanet('jupiter', planetObjects, .001)
+
+    rotatePlanet('saturn', planetMeshes, .01)
+    rotatePlanet('saturn', planetObjects, .001)
+
+    rotatePlanet('uranus', planetMeshes, .01)
+    rotatePlanet('uranus', planetObjects, .001)
+
+    rotatePlanet('neptune', planetMeshes, .01)
+    rotatePlanet('neptune', planetObjects, .001)
 
     requestAnimationFrame(animate)
     renderer.render(scene, camera)
