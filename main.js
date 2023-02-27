@@ -167,6 +167,5 @@ function animate() {
 
     requestAnimationFrame(animate)
     renderer.render(scene, camera)
-    stats.update()
 }
 animate()
