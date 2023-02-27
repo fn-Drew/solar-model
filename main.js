@@ -1,7 +1,6 @@
 import * as THREE from 'three'
 import './style.css'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import Stats from 'stats.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 const sun = new URL('./assets/sun/sun.glb', import.meta.url).href
@@ -84,19 +83,19 @@ function onError(error) {
 const loader = new GLTFLoader()
 
 // 8,000 miles
-const earthSize = .08
-const speed = .002
-const distance = 200
+const earthSize = 1
+const speed = .0008
+const distance = 300
 
-loader.load(sun, onLoad => load(onLoad, 'sun', earthSize * 15, 0), onProgress, onError)
-loader.load(mercury, onLoad => load(onLoad, 'mercury', earthSize * 1 / 3, 3.5 * distance), onProgress, onError)
-loader.load(venus, onLoad => load(onLoad, 'venus', earthSize * .9, 6.7 * distance), onProgress, onError)
-loader.load(earth, onLoad => load(onLoad, 'earth', earthSize, 9.3 * distance), onProgress, onError)
-loader.load(mars, onLoad => load(onLoad, 'mars', earthSize * 1 / 2, 14.2 * distance), onProgress, onError)
-loader.load(jupiter, onLoad => load(onLoad, 'jupiter', earthSize * 11, 48.4 * distance), onProgress, onError)
-loader.load(saturn, onLoad => load(onLoad, 'saturn', earthSize * 9, 88.9 * distance), onProgress, onError)
-loader.load(uranus, onLoad => load(onLoad, 'uranus', earthSize * 4, 179 * distance), onProgress, onError)
-loader.load(neptune, onLoad => load(onLoad, 'neptune', earthSize * 3.5, 288 * distance), onProgress, onError)
+loader.load(sun, onLoad => load(onLoad, 'sun', earthSize * 2, 0), onProgress, onError)
+loader.load(mercury, onLoad => load(onLoad, 'mercury', earthSize * .4, 15 * distance), onProgress, onError)
+loader.load(venus, onLoad => load(onLoad, 'venus', earthSize * .9, 30 * distance), onProgress, onError)
+loader.load(earth, onLoad => load(onLoad, 'earth', earthSize, 45 * distance), onProgress, onError)
+loader.load(mars, onLoad => load(onLoad, 'mars', earthSize * .6, 60 * distance), onProgress, onError)
+loader.load(jupiter, onLoad => load(onLoad, 'jupiter', earthSize * 11, 350 * distance), onProgress, onError)
+loader.load(saturn, onLoad => load(onLoad, 'saturn', earthSize * 9, 600 * distance), onProgress, onError)
+loader.load(uranus, onLoad => load(onLoad, 'uranus', earthSize * 4, 800 * distance), onProgress, onError)
+loader.load(neptune, onLoad => load(onLoad, 'neptune', earthSize * 4, 1200 * distance), onProgress, onError)
 
 // Light
 const light = new THREE.PointLight(0xffffff, 1)
@@ -104,15 +103,10 @@ light.position.set(-1, 0, 0)
 scene.add(light)
 
 // Camera
-const camera = new THREE.PerspectiveCamera(40, sizes.width / sizes.height, 1, 500 * distance)
+const camera = new THREE.PerspectiveCamera(40, sizes.width / sizes.height, 1, 2500 * distance)
 camera.position.z = 5000
 camera.position.y = 3000
 scene.add(camera)
-
-// FPS counter
-const stats = Stats()
-stats.showPanel(0)
-document.body.appendChild(stats.dom)
 
 // Renderer
 const canvas = document.querySelector('.webgl')
