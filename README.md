@@ -9,3 +9,4 @@ Planet textures by NASA.
 
 Todo:
 - compress models w/ https://github.com/CesiumGS/gltf-pipeline
+- put each planet on the proper axis
